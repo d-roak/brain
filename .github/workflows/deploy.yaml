@@ -27,7 +27,7 @@ jobs:
         run: |
           pnpm install --no-frozen-lockfile
       - name: Ensure Quartz builds, check bundle info
-        run: pnpx quartz build
+        run: pnpm quartz build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
