@@ -17,13 +17,14 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 20
-      - run: npm ci
+          version: 9
+      - shell: bash
+        run: |
+          pnpm install --no-frozen-lockfile
       - name: Ensure Quartz builds, check bundle info
-        run: npx quartz build
+        run: pnpx quartz build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

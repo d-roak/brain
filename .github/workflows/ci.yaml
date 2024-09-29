@@ -16,14 +16,15 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 20
-      - run: npm ci
+          version: 9
+      - shell: bash
+        run: |
+          pnpm install --no-frozen-lockfile
       - name: Check types and style
-        run: npm run check
+        run: pnpm run check
       - name: Test
-        run: npm test
+        run: pnpm test
       - name: Ensure Quartz builds, check bundle info
-        run: npx quartz build --bundleInfo
+        run: pnpx quartz build --bundleInfo
